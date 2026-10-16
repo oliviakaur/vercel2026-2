@@ -1,0 +1,16 @@
+FROM nginx:1.28.2-alpine
+
+COPY dokploy/nginx.conf /etc/nginx/conf.d/default.conf
+COPY dokploy/newsgo-edge-proxy.conf /etc/nginx/newsgo-edge-proxy.conf
+COPY index.html /usr/share/nginx/html/index.html
+COPY frontend-new.js /usr/share/nginx/html/frontend-new.js
+COPY newsgo-inject.js /usr/share/nginx/html/newsgo-inject.js
+COPY newsgo-inject.css /usr/share/nginx/html/newsgo-inject.css
+COPY styles.css /usr/share/nginx/html/styles.css
+COPY favicon.ico /usr/share/nginx/html/favicon.ico
+COPY dokploy/runtime-config.js /usr/share/nginx/html/config.js
+
+EXPOSE 80
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
+  CMD wget -q -O /dev/null http://127.0.0.1/ || exit 1

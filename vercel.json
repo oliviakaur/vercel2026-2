@@ -1,0 +1,121 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/sitemap.xml",
+      "destination": "/api/sitemap"
+    },
+    {
+      "source": "/sitemap_index.xml",
+      "destination": "/api/sitemap"
+    },
+    {
+      "source": "/sitemaps/:database/:page.xml",
+      "destination": "/api/sitemap?database=:database&page=:page"
+    },
+    {
+      "source": "/robots.txt",
+      "destination": "/api/robots"
+    },
+    {
+      "source": "/rss.xml",
+      "destination": "/api/rss"
+    },
+    {
+      "source": "/:database/:slug",
+      "destination": "/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; script-src-elem 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline'; connect-src 'self' https:; img-src 'self' data: https:; frame-src 'self' https:; form-action 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'"
+        },
+        {
+          "key": "Cross-Origin-Opener-Policy",
+          "value": "same-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), geolocation=(), microphone=(), payment=(), usb=()"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=31536000"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-DNS-Prefetch-Control",
+          "value": "off"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "source": "/",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/index.html",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/frontend-new.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=300, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/styles.css",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=300, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/favicon.ico",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, must-revalidate"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+*
+!Dockerfile.dokploy
+!dokploy/
+!dokploy/**
+!index.html
+!frontend-new.js
+!newsgo-inject.js
+!newsgo-inject.css
+!styles.css
+!favicon.ico
